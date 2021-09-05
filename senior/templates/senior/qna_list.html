@@ -1,0 +1,20 @@
+
+{% extends 'senior/layout.html' %}
+
+{% block content %}
+<a href="/senior/qna/new/"><p style="text-align:right;">게시물 쓰기</p></a>
+<ul>
+    {% for qna in qna_list %}
+    <li>
+        {{ qna.pk }}
+        <img src="{{ qna.picture.url }}" style="width: 100px;" />
+        <a href="/senior/qna/{{ qna.pk }}/">{{ qna.title }}</a>
+        <a>작성자 : {{ qna.writer }}</a>
+        <hr/>
+    </li>
+    {% endfor %}
+</ul>
+<hr />
+
+
+{% endblock %}

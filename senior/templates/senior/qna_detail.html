@@ -1,0 +1,29 @@
+
+{% extends 'senior/layout.html' %}
+
+{% block content %}
+<p style="text-align:right;">작성자 : {{ qna.writer }}</p>
+<p style="text-align:right;">작성일시 : {{ qna.created_at }}</p>
+<a href="edit/"><p style="text-align:right;">게시물 수정</p></a>
+
+<center>
+<h2>{{ qna.title }}</h2>
+<img src="{{ qna.picture.url }}" />
+{{ qna.desc|linebreaks }}
+</center>
+<a href="/senior/qna/{{ qna.pk }}/reviews/new/">새 댓글 쓰기</a>
+
+<ul>
+    {% for review in review_list %}
+    <li>
+        {{ review.message }}
+        at {{ review.created_at }}
+        <a href="/senior/qna/{{ qna.pk }}/reviews/{{review.pk}}/edit/">Edit</a>
+        <a href="/senior/qna/{{ qna.pk }}/reviews/{{review.pk}}/delete/">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+<hr />
+<a href="/senior/qna/">List로 돌아가기</a>
+
+{% endblock %}
